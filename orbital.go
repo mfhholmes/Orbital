@@ -5,6 +5,7 @@ import (
   "net/http"
   "github.com/gorilla/mux"
   "encoding/json"
+  "time"
 )
 
 type Message struct {
@@ -23,6 +24,12 @@ func setPop(response http.ResponseWriter, request *http.Request) {
   fmt.Fprintf(response, "%s + %s per ?", start, growth)
 }
 
+func mainLoop(){
+  for{
+    fmt.Println("test" + time.Now().String())
+    time.Sleep(100 * time.Millisecond)
+  }
+}
 func main() {
 
   r := mux.NewRouter()
@@ -30,5 +37,7 @@ func main() {
   r.HandleFunc("/population", setPop).Methods("POST")
   r.PathPrefix("/").Handler(http.FileServer(http.Dir("public_html")))
   http.Handle("/", r)
-  http.ListenAndServe(":8080", nil)
+  go http.ListenAndServe(":8080", nil)
+  mainLoop();
+  fmt.Println("server ended")
 }

@@ -1,5 +1,7 @@
 "use strict";
 // add event handlers
+var url = "/population";
+
 $("#sendValues").on("click",function(){
   var values ={};
   values.startPopulation = $("#startPop").val();
@@ -7,10 +9,9 @@ $("#sendValues").on("click",function(){
   //var dataString = JSON.stringify(values);
   var dataString = values;
   $.ajax(
-    "http://localhost:8080/population",
+    url,
     {
       "type":"POST",
-      "dataType":"json",
       "data": dataString,
       "complete":function( jqXHR ,  textStatus){
         $("#response").html($("#response").html() + "\n" + textStatus)
@@ -30,7 +31,7 @@ $("#getValues").on("click",function(){
   values.growthRate = $("#growthRate").val();
   var dataString = JSON.stringify(values);
   $.ajax(
-    "http://localhost:8080/population",
+    url,
     {
       "type":"GET",
       "dataType":"json",
