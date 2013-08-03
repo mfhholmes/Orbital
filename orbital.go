@@ -6,6 +6,7 @@ import (
   "github.com/gorilla/mux"
   "encoding/json"
   "time"
+  "container/list"
 )
 
 type Message struct {
@@ -25,8 +26,18 @@ func setPop(response http.ResponseWriter, request *http.Request) {
 }
 
 func mainLoop(){
-  for{
+  funclist := list.New()
+  testfunc := func(){}
+  testfunc = func(){
     fmt.Println("test" + time.Now().String())
+    funclist.PushBack(testfunc)
+  }
+  funclist.PushBack(testfunc)
+  for{
+    runitem := funclist.Front()
+    runfunc := runitem.Value
+    go runfunc()
+    runitem.Next()
     time.Sleep(100 * time.Millisecond)
   }
 }
@@ -41,3 +52,4 @@ func main() {
   mainLoop();
   fmt.Println("server ended")
 }
+
