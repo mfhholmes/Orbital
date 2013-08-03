@@ -24,9 +24,11 @@ func setPop(response http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
+
   r := mux.NewRouter()
   r.HandleFunc("/population", pop).Methods("GET")
   r.HandleFunc("/population", setPop).Methods("POST")
-  http.Handle("/", r)
+  http.Handle("/population", r)
+  http.Handle("/",http.FileServer(http.Dir("public_html")))
   http.ListenAndServe(":8080", nil)
 }
