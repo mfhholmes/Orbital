@@ -25,7 +25,7 @@
         <header>Orbital</header>
         <div id="container">
           <label for="startPop">Starting Population</label>
-          <input type="text" id="startPop" value="1></input>
+          <input type="text" id="startPop" value="1"></input>
           <label for="growthRate">Number of Seconds between increments</label>
           <input type="text" id="growthRate" value="5"></input>
           <button id="sendValues">Send new values</button>

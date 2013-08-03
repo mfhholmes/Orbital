@@ -113,8 +113,7 @@ header{
     top:0px;
     width:100%;
     height:2em;
-    background-color:orange;
-    color:black;
+    background-color:grey;
 }
 
 footer {
@@ -122,8 +121,7 @@ footer {
     bottom:0px;
     width:100%;
     height:2em;
-    background-color:orange;
-    color:black;
+    background-color:grey;
 }
 
 #container {
@@ -132,9 +130,31 @@ footer {
     bottom:2em;
     left:0px;
     width:100%;
-    background-color:antiqueWhite;
+    background-color:green;
     overflow: hidden;
 }
+
+#map {
+    position:absolute;
+    top:-200px;
+    left:-200px;
+    width:2000px;
+    height:2000px;
+    background-color:darkgreen;
+}
+#terrain {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background-color:lightgreen;
+}
+
+
+
+
+
 
 
 
