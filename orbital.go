@@ -8,6 +8,9 @@ import (
 )
 
 //import("time")
+type Settings struct{
+  Port string
+}
 
 type Message struct {
 	CurrentPopulation int
@@ -35,6 +38,9 @@ func buildHandler() http.Handler {
 
 func main() {
 
+  //TODO: argument might specify config file/settings
+  var defaultSettings = Settings{Port:":8080"}
+  
 	fmt.Println("firing up actionList")
 	actions := new(ActionList)
 	controlChan := make(chan controlInstruction)
@@ -43,7 +49,7 @@ func main() {
 	fmt.Println("firing up webserver")
 	handler := buildHandler()
 
-	http.ListenAndServe(":1234", handler)
+	http.ListenAndServe(defaultSettings.Port, handler)
 
 	fmt.Println("server ended")
 }
